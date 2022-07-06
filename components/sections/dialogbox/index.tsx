@@ -22,7 +22,7 @@ const Dialogbox: FunctionComponent<Props> = ({
   title,
   message,
   action,
-}) => {
+}: Props) => {
   const closeDialogbox = () => {
     setIsOpen(false);
   };

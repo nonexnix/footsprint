@@ -1,6 +1,6 @@
-import Head from "next/head";
 import type { FunctionComponent, ReactNode } from "react";
 import { Fragment } from "react";
+import Head from "next/head";
 import Footer from "./footer";
 import Header from "./header";
 
