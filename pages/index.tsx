@@ -22,6 +22,7 @@ const Home: NextPage = () => {
 
         <Button
           Icon={CashIcon}
+          text="Buy"
           onClick={() => {
             console.log("Clicked Buy");
           }}
@@ -44,9 +45,8 @@ const Home: NextPage = () => {
                 },
               },
             ],
-          }}>
-          Buy
-        </Button>
+          }}
+        />
       </section>
     </Layout>
   );

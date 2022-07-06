@@ -1,17 +1,12 @@
-import type {
-  ComponentType,
-  FunctionComponent,
-  ReactNode,
-  SVGProps,
-} from "react";
+import type { ComponentType, FunctionComponent, SVGProps } from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 type Variant = "transparent";
 
 interface Props {
-  children: ReactNode;
   Icon?: ComponentType<SVGProps<SVGSVGElement>>;
+  text: string;
   variant?: Variant;
   onClick: () => void;
   dialogbox?: {
@@ -27,13 +22,13 @@ interface Props {
 }
 
 const Button: FunctionComponent<Props> = ({
-  children,
+  text,
   Icon,
   onClick,
   variant,
   dialogbox,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
 
   let style = "bg-primary-dark text-primary-light";
 
@@ -45,28 +40,29 @@ const Button: FunctionComponent<Props> = ({
   }
 
   const handler = () => {
-    setIsOpen(true);
+    toggleDialogbox();
     if (onClick) {
       onClick();
     }
   };
 
-  const closeDialogbox = () => {
-    setIsOpen(false);
+  const toggleDialogbox = () => {
+    setIsDialogboxOpen(!isDialogboxOpen);
   };
 
   return (
     <Fragment>
-      <div
+      <button
+        type="button"
         onClick={handler}
         className={`${style} hover-transition flex cursor-pointer items-center gap-2 rounded-base px-5 py-2 hover:opacity-90`}>
         {Icon && <Icon className="text h-6 w-6" />}
-        <button type="button">{children}</button>
-      </div>
+        {text}
+      </button>
 
       {dialogbox && (
-        <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeDialogbox}>
+        <Transition appear show={isDialogboxOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={toggleDialogbox}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -102,13 +98,13 @@ const Button: FunctionComponent<Props> = ({
                         dialogbox.buttons.map((button, index) => (
                           <Button
                             key={index}
+                            text={button.text}
                             variant={button.variant}
                             onClick={() => {
-                              closeDialogbox();
+                              toggleDialogbox();
                               button.onClick();
-                            }}>
-                            {button.text}
-                          </Button>
+                            }}
+                          />
                         ))}
                     </div>
                   </Dialog.Panel>
