@@ -66,7 +66,7 @@ const Dialogbox: FunctionComponent<Props> = ({
                   <p>{message}</p>
                 </div>
                 <div className="mt-5 flex justify-end gap-2">
-                  <Button onClick={closeDialogbox} variant="close">
+                  <Button onClick={closeDialogbox} variant="transparent">
                     Close
                   </Button>
                   {action && (

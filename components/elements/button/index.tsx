@@ -10,7 +10,7 @@ import Dialogbox from "../../sections/dialogbox";
 interface Props {
   children: ReactNode;
   onClick: () => void;
-  variant?: "success" | "danger" | "warning" | "close";
+  variant?: "default" | "transparent";
   dialogbox?: {
     Icon: ComponentType<SVGProps<SVGSVGElement>>;
     title: string;
@@ -25,7 +25,7 @@ interface Props {
 const Button: FunctionComponent<Props> = ({
   children,
   onClick,
-  variant,
+  variant = "default",
   dialogbox,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,20 +33,12 @@ const Button: FunctionComponent<Props> = ({
   let style = "";
 
   switch (variant) {
-    case "success": {
-      style = "";
-      break;
-    }
-    case "danger": {
-      style = "";
-      break;
-    }
-    case "warning": {
-      style = "";
-      break;
-    }
-    case "close": {
+    case "default": {
       style = "bg-primary-dark text-primary-light";
+      break;
+    }
+    case "transparent": {
+      style = "";
       break;
     }
   }
@@ -63,7 +55,7 @@ const Button: FunctionComponent<Props> = ({
       <button
         type="button"
         onClick={eventHandler}
-        className={`${style} rounded-base px-4 py-2`}>
+        className={`${style} hover-transition rounded-base px-5 py-2 hover:opacity-90`}>
         {children}
       </button>
       {dialogbox && (
