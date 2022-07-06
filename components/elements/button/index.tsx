@@ -57,12 +57,13 @@ const Button: FunctionComponent<Props> = ({
 
   return (
     <Fragment>
-      <div
+      <button
+        type="button"
         onClick={handler}
         className={`${style} hover-transition flex cursor-pointer items-center gap-2 rounded-base px-5 py-2 hover:opacity-90`}>
         {Icon && <Icon className="text h-6 w-6" />}
-        <button type="button">{children}</button>
-      </div>
+        {children}
+      </button>
 
       {dialogbox && (
         <Transition appear show={isOpen} as={Fragment}>
