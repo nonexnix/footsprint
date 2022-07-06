@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
+import Button from "../components/elements/button";
 import Layout from "../components/layouts";
+import { CashIcon } from "@heroicons/react/solid";
 
 const Home: NextPage = () => {
   return (
@@ -17,6 +19,19 @@ const Home: NextPage = () => {
             pages/index.js
           </code>
         </p>
+        <Button
+          onClick={() => {}}
+          dialogbox={{
+            Icon: CashIcon,
+            title: "Payment",
+            message: "Please confirm your payment",
+            action: {
+              name: "Confirm",
+              onClick: () => {},
+            },
+          }}>
+          Buy
+        </Button>
       </section>
     </Layout>
   );
