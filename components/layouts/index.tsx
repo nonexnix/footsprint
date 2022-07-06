@@ -16,7 +16,7 @@ const Layout: FunctionComponent<Props> = ({ children, title }) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex min-h-screen flex-col [&>*>div]:mx-auto [&>*>div]:max-w-screen-wide">
+      <div className="flex min-h-screen flex-col [&>*>div]:mx-auto [&>*>div]:max-w-screen-wide [&>*>div>*]:px-4">
         <Header />
         <main className="grow">
           <div>{children}</div>
