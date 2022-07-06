@@ -1,16 +1,23 @@
-import type { ComponentType, FunctionComponent, SVGProps } from "react";
+import type {
+  ComponentType,
+  Dispatch,
+  FunctionComponent,
+  ReactNode,
+  SetStateAction,
+  SVGProps,
+} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Button from "../../elements/button";
 
 interface Props {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   title: string;
   message: string;
   action?: {
-    name: React.ReactNode;
+    name: ReactNode;
     onClick: () => void;
   };
 }
@@ -62,7 +69,7 @@ const Dialogbox: FunctionComponent<Props> = ({
                   <Icon className="h-6 w-6" />
                   <span>{title}</span>
                 </Dialog.Title>
-                <div className="mt-2 text-sm text-fade-light">
+                <div className="mt-2 text-sm text-fade-dark">
                   <p>{message}</p>
                 </div>
                 <div className="mt-5 flex justify-end gap-2">

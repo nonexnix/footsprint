@@ -7,7 +7,7 @@ const Dashboard: NextPage = () => {
       <section className="flex h-full w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
           Welcome to{" "}
-          <a href="https://nextjs.org" className="text-accent">
+          <a href="https://nextjs.org" className="text-primary-accent">
             Dashboard
           </a>
         </h1>

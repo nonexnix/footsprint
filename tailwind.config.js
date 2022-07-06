@@ -24,11 +24,11 @@ module.exports = {
         primary: {
           light: "#F3F4F7",
           dark: "#333333",
+          accent: "#E22837",
         },
-        accent: "#E22837",
         fade: {
-          light: "#6B7280",
-          dark: "#D1D5DB",
+          light: "#D1D5DB",
+          dark: "#6B7280",
         },
       },
     },
