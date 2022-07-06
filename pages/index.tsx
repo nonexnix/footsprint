@@ -26,7 +26,7 @@ const Home: NextPage = () => {
           onClick={() => {
             console.log("Clicked Buy");
           }}
-          dialogbox={{
+          Dialogbox={{
             Icon: CashIcon,
             title: "Buy",
             message: "Are you sure you want to buy this item?",

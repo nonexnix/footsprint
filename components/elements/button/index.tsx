@@ -9,7 +9,7 @@ interface Props {
   text: string;
   variant?: Variant;
   onClick: () => void;
-  dialogbox?: {
+  Dialogbox?: {
     Icon: ComponentType<SVGProps<SVGSVGElement>>;
     title: string;
     message: string;
@@ -26,7 +26,7 @@ const Button: FunctionComponent<Props> = ({
   Icon,
   onClick,
   variant,
-  dialogbox,
+  Dialogbox,
 }) => {
   const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
 
@@ -60,7 +60,7 @@ const Button: FunctionComponent<Props> = ({
         {text}
       </button>
 
-      {dialogbox && (
+      {Dialogbox && (
         <Transition appear show={isDialogboxOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={toggleDialogbox}>
             <Transition.Child
@@ -87,15 +87,15 @@ const Button: FunctionComponent<Props> = ({
                     <Dialog.Title
                       as="h3"
                       className="flex items-center gap-2 text-lg font-medium">
-                      <dialogbox.Icon className="h-6 w-6" />
-                      <span>{dialogbox.title}</span>
+                      <Dialogbox.Icon className="h-6 w-6" />
+                      <span>{Dialogbox.title}</span>
                     </Dialog.Title>
                     <div className="mt-2 text-sm text-fade-dark">
-                      <p>{dialogbox.message}</p>
+                      <p>{Dialogbox.message}</p>
                     </div>
                     <div className="mt-5 flex justify-end gap-2">
-                      {dialogbox.buttons &&
-                        dialogbox.buttons.map((button, index) => (
+                      {Dialogbox.buttons &&
+                        Dialogbox.buttons.map((button, index) => (
                           <Button
                             key={index}
                             text={button.text}
