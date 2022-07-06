@@ -14,6 +14,9 @@ module.exports = {
       wide: "1536px",
     },
     extend: {
+      borderRadius: {
+        base: "1rem",
+      },
       fontFamily: {
         primary: ["Inter", "sans-serif"],
       },
@@ -21,9 +24,12 @@ module.exports = {
         primary: {
           light: "#F3F4F7",
           dark: "#333333",
+          accent: "#E22837",
         },
-        accent: "#E22837",
-        fade: "#464646",
+        fade: {
+          light: "#D1D5DB",
+          dark: "#6B7280",
+        },
       },
     },
   },
