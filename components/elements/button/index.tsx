@@ -28,7 +28,7 @@ const Button: FunctionComponent<Props> = ({
   variant,
   dialogbox,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
 
   let style = "bg-primary-dark text-primary-light";
 
@@ -40,14 +40,14 @@ const Button: FunctionComponent<Props> = ({
   }
 
   const handler = () => {
-    setIsOpen(true);
+    toggleDialogbox();
     if (onClick) {
       onClick();
     }
   };
 
-  const closeDialogbox = () => {
-    setIsOpen(false);
+  const toggleDialogbox = () => {
+    setIsDialogboxOpen(!isDialogboxOpen);
   };
 
   return (
@@ -61,8 +61,8 @@ const Button: FunctionComponent<Props> = ({
       </button>
 
       {dialogbox && (
-        <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeDialogbox}>
+        <Transition appear show={isDialogboxOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={toggleDialogbox}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -101,7 +101,7 @@ const Button: FunctionComponent<Props> = ({
                             text={button.text}
                             variant={button.variant}
                             onClick={() => {
-                              closeDialogbox();
+                              toggleDialogbox();
                               button.onClick();
                             }}
                           />
