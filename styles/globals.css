@@ -8,4 +8,7 @@
   .hover-transition {
     @apply transition-all duration-300 ease-in-out;
   }
+  .icon {
+    @apply h-6 w-6
+  }
 }

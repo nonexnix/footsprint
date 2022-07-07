@@ -9,7 +9,7 @@ interface Props {
   text: string;
   variant?: Variant;
   onClick: () => void;
-  Dialogbox?: {
+  dialogbox?: {
     Icon: ComponentType<SVGProps<SVGSVGElement>>;
     title: string;
     message: string;
@@ -26,9 +26,18 @@ const Button: FunctionComponent<Props> = ({
   Icon,
   onClick,
   variant,
-  Dialogbox,
+  dialogbox,
 }) => {
   const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
+
+  const toggleDialogbox = () => {
+    setIsDialogboxOpen(!isDialogboxOpen);
+  };
+
+  const handler = () => {
+    onClick();
+    dialogbox && toggleDialogbox();
+  };
 
   let style = "bg-primary-dark text-primary-light";
 
@@ -39,28 +48,17 @@ const Button: FunctionComponent<Props> = ({
     }
   }
 
-  const handler = () => {
-    toggleDialogbox();
-    if (onClick) {
-      onClick();
-    }
-  };
-
-  const toggleDialogbox = () => {
-    setIsDialogboxOpen(!isDialogboxOpen);
-  };
-
   return (
     <Fragment>
       <button
         type="button"
         onClick={handler}
         className={`${style} hover-transition flex cursor-pointer items-center gap-2 rounded-base px-5 py-2 hover:opacity-90`}>
-        {Icon && <Icon className="text h-6 w-6" />}
+        {Icon && <Icon className="icon" />}
         {text}
       </button>
 
-      {Dialogbox && (
+      {dialogbox && (
         <Transition appear show={isDialogboxOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={toggleDialogbox}>
             <Transition.Child
@@ -87,15 +85,15 @@ const Button: FunctionComponent<Props> = ({
                     <Dialog.Title
                       as="h3"
                       className="flex items-center gap-2 text-lg font-medium">
-                      <Dialogbox.Icon className="h-6 w-6" />
-                      <span>{Dialogbox.title}</span>
+                      <dialogbox.Icon className="icon" />
+                      <span>{dialogbox.title}</span>
                     </Dialog.Title>
                     <div className="mt-2 text-sm text-fade-dark">
-                      <p>{Dialogbox.message}</p>
+                      <p>{dialogbox.message}</p>
                     </div>
                     <div className="mt-5 flex justify-end gap-2">
-                      {Dialogbox.buttons &&
-                        Dialogbox.buttons.map((button, index) => (
+                      {dialogbox.buttons &&
+                        dialogbox.buttons.map((button, index) => (
                           <Button
                             key={index}
                             text={button.text}
