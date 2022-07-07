@@ -54,7 +54,7 @@ const Button: FunctionComponent<Props> = ({
         type="button"
         onClick={handler}
         className={`${style} hover-transition flex cursor-pointer items-center gap-2 rounded-base px-5 py-2 hover:opacity-90`}>
-        {Icon && <Icon className="text h-6 w-6" />}
+        {Icon && <Icon className="icon" />}
         {text}
       </button>
 
@@ -85,7 +85,7 @@ const Button: FunctionComponent<Props> = ({
                     <Dialog.Title
                       as="h3"
                       className="flex items-center gap-2 text-lg font-medium">
-                      <dialogbox.Icon className="h-6 w-6" />
+                      <dialogbox.Icon className="icon" />
                       <span>{dialogbox.title}</span>
                     </Dialog.Title>
                     <div className="mt-2 text-sm text-fade-dark">
