@@ -9,7 +9,7 @@ interface Props {
   text: string;
   variant?: Variant;
   onClick: () => void;
-  dialogbox?: {
+  dialog?: {
     Icon: ComponentType<SVGProps<SVGSVGElement>>;
     title: string;
     message: string;
@@ -26,17 +26,17 @@ const Button: FunctionComponent<Props> = ({
   Icon,
   onClick,
   variant,
-  dialogbox,
+  dialog,
 }) => {
-  const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const toggleDialogbox = () => {
-    setIsDialogboxOpen(!isDialogboxOpen);
+  const toggleDialog = () => {
+    setIsDialogOpen(!isDialogOpen);
   };
 
   const handler = () => {
     onClick();
-    dialogbox && toggleDialogbox();
+    dialog && toggleDialog();
   };
 
   let style = "bg-primary-dark text-primary-light";
@@ -58,9 +58,9 @@ const Button: FunctionComponent<Props> = ({
         {text}
       </button>
 
-      {dialogbox && (
-        <Transition appear show={isDialogboxOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={toggleDialogbox}>
+      {dialog && (
+        <Transition appear show={isDialogOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={toggleDialog}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -85,21 +85,21 @@ const Button: FunctionComponent<Props> = ({
                     <Dialog.Title
                       as="h3"
                       className="flex items-center gap-2 text-lg font-medium">
-                      <dialogbox.Icon className="icon" />
-                      <span>{dialogbox.title}</span>
+                      <dialog.Icon className="icon" />
+                      <span>{dialog.title}</span>
                     </Dialog.Title>
                     <div className="mt-2 text-sm text-fade-dark">
-                      <p>{dialogbox.message}</p>
+                      <p>{dialog.message}</p>
                     </div>
                     <div className="mt-5 flex justify-end gap-2">
-                      {dialogbox.buttons &&
-                        dialogbox.buttons.map((button, index) => (
+                      {dialog.buttons &&
+                        dialog.buttons.map((button, index) => (
                           <Button
                             key={index}
                             text={button.text}
                             variant={button.variant}
                             onClick={() => {
-                              toggleDialogbox();
+                              toggleDialog();
                               button.onClick();
                             }}
                           />
